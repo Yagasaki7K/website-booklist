@@ -82,25 +82,27 @@ const NavigationDetails = styled.div`
 
 const Navigation = () => {
     const router = useRouter();
-  return (
-    <NavigationDetails>
-          <div className="navigation">
-              <div className="logo">
-                  <img onClick={() => router.push("/")} src="/logo.png" alt="BookList" />
-              </div>
-              <div className="content">
-                  <li onClick={() => router.push("/search")}>Search</li>
-                  <li onClick={() => router.push("/social")}>Social</li>
-                  <li onClick={() => router.push("https://discord.gg/hnkScv9p5M")}>Discord</li>
-
-                  <div className="login">
-                    <button className="loginbtn" onClick={() => router.push("/login")}>Login</button>
-                    <button className="signupbtn" onClick={() => router.push("/signup")}>Sign Up</button>
+    return (
+        <NavigationDetails>
+            <div className="navigation">
+                <div className="logo">
+                    <img onClick={() => router.push("/")} src="/logo.png" alt="BookList" />
                 </div>
-              </div>
-          </div>
-    </NavigationDetails>
-  )
+                <div className="content">
+                    <li onClick={() => router.push("/")}>Home</li>
+                    <li onClick={() => router.push("/search")}>Search</li>
+                    <li onClick={() => router.push("/profile")}>Profile</li>
+                    <li onClick={() => router.push("/top")}>Top 100</li>
+                    <li onClick={() => router.push("https://discord.gg/hnkScv9p5M")}>Discord</li>
+
+                    <div className="login">
+                        <button className="loginbtn" onClick={() => router.push("/login")}>Login</button>
+                        <button className="signupbtn" onClick={() => router.push("/signup")}>Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </NavigationDetails>
+    )
 }
 
 export default Navigation
