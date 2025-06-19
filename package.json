@@ -10,6 +10,7 @@
     "commit": "git pull && bun update && bun run vercel && read -p 'Descriptions Commit: ' message && git add . && echo -n \"$message - \" && node getTime.js | xargs -I {} git commit -m \"$message - {}\" && git push"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.50.0",
     "firebase": "^11.9.1",
     "next": "15.2.1",
     "next-seo": "^6.8.0",

@@ -286,6 +286,148 @@ const HomeDetails = styled.div`
             }
         }
     }
+
+    .modal-login, .modal-signup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 5;
+        display: flex;
+
+        .modal-content {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary);
+            z-index: 10;
+            position: fixed;
+            padding: 2rem 2.5rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(15px);
+
+            .link {
+                color: var(--white);
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    text-decoration: underline;
+                    color: var(--white);
+                }
+            }
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                button {
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 1.5rem;
+                    color: var(--white);
+                }
+            }
+
+            p {
+                display: flex;
+                justify-content: center;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+
+                input {
+                    width: 20rem;
+                    height: 3rem;
+                    border-radius: 1rem;
+                    padding: 1rem;
+                    border: none;
+                    outline: none;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    color: var(--black);
+                    background: var(--white);
+
+                    &::placeholder {
+                        color: var(--gray);
+                    }
+
+                    @media (max-width: 768px) {
+                        width: 100%;
+                        max-width: 20rem;
+                        padding: 0.8rem;
+                        font-size: 0.9rem;
+                    }
+                }
+
+                button {
+                    width: 20rem;
+                    height: 3rem;
+                    border-radius: 1rem;
+                    padding: 1rem;
+                    border: none;
+                    outline: none;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    color: var(--primary);
+                    background: var(--white);
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: all 0.3s ease-in-out;
+
+                    &:hover {
+                        background: var(--primary);
+                        color: var(--white);
+                        border: 1px solid var(--white);
+                    }
+
+                    @media (max-width: 768px) {
+                        width: 100%;
+                        max-width: 20rem;
+                        padding: 0.8rem;
+                        font-size: 0.9rem;
+                    }
+                }
+
+                p {
+                    margin-bottom: -1rem;
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            padding: 2rem 1rem;
+            width: 90%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 1rem;
+        }
+
+        img {
+            width: 200px;
+            height: auto;
+            margin: 0 auto;
+
+            @media (max-width: 768px) {
+                width: 150px;
+            }
+        }
+    }
 `
 
 export default HomeDetails;

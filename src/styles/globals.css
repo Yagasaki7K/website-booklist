@@ -8,6 +8,7 @@
   --primary: #9e35ff;
   --white: #fff;
   --gray: #a0b1c5;
+  --black: #171717;
 }
 
 @media (prefers-color-scheme: dark) {

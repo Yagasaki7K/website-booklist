@@ -2,9 +2,56 @@ import HomeDetails from "@/components/HomeDetails";
 import Navigation from "@/components/Navigation";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { supabase } from "../../supabase";
+import { toast } from "sonner";
 
 export default function Home() {
     const router = useRouter();
+    const [getUrl, setUrl] = useState('')
+
+    async function insertUserInSupabase() {
+        const { data: user } = await supabase.auth.getUser()
+
+        await supabase.from('users').insert({
+            id: user.user?.id,
+            user_name: 'Nome Completo',
+            user_email: email,
+            user_books: [],
+        })
+    }
+
+    const handleSignup = async () => {
+        const { error } = await supabase.auth.signUp({ email, password })
+        if (error) return alert(error.message)
+        toast.success('Cadastro feito! Verifique seu e-mail.')
+        insertUserInSupabase()
+        router.push('/')
+    }
+
+    // get the URL
+    useEffect(() => {
+        const fullUrl = window.location.href;
+        const page = fullUrl.split('?page=')[1];
+        setUrl(page);
+    }, [router.asPath]);
+
+    const handleLogin = () => {
+        router.push('/?page=login');
+    }
+
+    const handleSignUp = () => {
+        router.push('/?page=signup');
+    }
+
+    const handleHome = () => {
+        router.push('/');
+    }
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+
     return (
         <>
             <Head>
@@ -80,6 +127,49 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
+
+                {
+                    getUrl === 'login' ? (
+                        <div className="modal-login">
+                            <div className="modal-content">
+                                <img src="/logo-white.png" alt="" />
+                                <div className="header">
+                                    <h2>Fazer Login</h2>
+                                    <button className="close-modal" onClick={() => handleHome()}><i className="uil uil-times"></i></button>
+                                </div>
+                                <form action="">
+                                    <input type="email" placeholder="Seu e-mail" />
+                                    <input type="password" placeholder="Sua senha" />
+                                    <button type="submit">Entrar</button>
+                                    <p className="link">Esqueci minha senha</p>
+                                </form>
+                                <p>Ainda não tem conta?&nbsp;<p className="link" onClick={() => handleSignUp()}>Cadastrar</p></p>
+                            </div>
+                        </div>
+                    ) : null
+                }
+
+                {
+                    getUrl === 'signup' ? (
+                        <div className="modal-signup">
+                            <div className="modal-content">
+                                <img src="/logo-white.png" alt="" />
+                                <div className="header">
+                                    <h2>Criar um Cadastro</h2>
+                                    <button className="close-modal" onClick={() => handleHome()}><i className="uil uil-times"></i></button>
+                                </div>
+
+                                <form onSubmit={(e) => e.preventDefault()}>
+                                    <input type="email" placeholder="Seu Email" onChange={(e) => setEmail(e.target.value)} required/>
+                                    <input type="password" placeholder="Sua senha" onChange={(e) => setPassword(e.target.value)} required/>
+                                    <input type="password" placeholder="Repita sua senha" onChange={(e) => setConfirmPassword(e.target.value)} required/>
+                                    <button type="submit" onClick={confirmPassword === password ? () => handleSignup() : () => toast.warning('As senhas devem ser iguais')}>Cadastrar</button>
+                                </form>
+                                <p>Já tenho uma conta.&nbsp;<p className="link" onClick={() => handleLogin()}>Fazer Login</p></p>
+                            </div>
+                        </div>
+                    ) : null
+                }
             </HomeDetails>
         </>
     );

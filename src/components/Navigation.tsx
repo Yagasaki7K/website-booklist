@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
+import { supabase } from '../../supabase'
 
 const NavigationDetails = styled.div`
     .navigation {
@@ -82,6 +83,60 @@ const NavigationDetails = styled.div`
 
 const Navigation = () => {
     const router = useRouter();
+
+    const [user, setUser] = useState<any>(null);
+    const [userData, setUserData] = useState<any>(null);
+
+    const handleLogin = () => {
+        router.push('/?page=login');
+    }
+
+    const handleSignUp = () => {
+        router.push('/?page=signup');
+    }
+
+    const handleLogoff = async () => {
+        const { error } = await supabase.auth.signOut()
+
+        if (error) {
+            console.error('Erro ao sair:', error.message)
+            return false
+        }
+
+        router.push('/');
+    }
+
+    useEffect(() => {
+        supabase.auth.getUser().then(({ data: { user }, error }) => {
+            if (error || !user) return
+            else setUser(user)
+        })
+
+        searchDatainSupabase().then((data) => {
+            setUserData(data)
+        })
+    }, [])
+
+    async function searchDatainSupabase() {
+        const { data: session } = await supabase.auth.getUser()
+        const user = session.user
+
+        const { data, error } = await supabase
+            .from('users')
+            .select('id, user_email, user_name, user_books')
+            .eq('id', user?.id)
+            .single()
+
+        if (error) {
+            console.error('Erro ao buscar dados do usuário:', error)
+            return null
+        }
+
+        console.log(data)
+
+        return data
+    }
+
     return (
         <NavigationDetails>
             <div className="navigation">
@@ -96,8 +151,19 @@ const Navigation = () => {
                     <li onClick={() => router.push("https://discord.gg/hnkScv9p5M")}>Discord</li>
 
                     <div className="login">
-                        <button className="loginbtn" onClick={() => router.push("/login")}>Login</button>
-                        <button className="signupbtn" onClick={() => router.push("/signup")}>Sign Up</button>
+                        {
+                            user ? (
+                                <>
+                                    <button className="loginbtn" onClick={() => router.push("/profile")}>Olá, {user.user_name.split(" ")[0]!}</button>
+                                    <button className="signupbtn" onClick={() => handleLogoff()}>Logoff</button>
+                                </>
+                            ) : (
+                                <>
+                                    <button className="loginbtn" onClick={() => handleLogin()}>Login</button>
+                                    <button className="signupbtn" onClick={() => handleSignUp()}>Sign Up</button>
+                                </>
+                            )
+                        }
                     </div>
                 </div>
             </div>
