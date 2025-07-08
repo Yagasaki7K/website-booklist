@@ -1,28 +1,32 @@
 {
-  "name": "booklist",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "vercel": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "commit": "git pull && bun update && bun run vercel && read -p 'Descriptions Commit: ' message && git add . && echo -n \"$message - \" && node getTime.js | xargs -I {} git commit -m \"$message - {}\" && git push"
-  },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.50.0",
-    "firebase": "^11.9.1",
-    "next": "15.2.1",
-    "next-seo": "^6.8.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "sonner": "^2.0.5",
-    "styled-components": "^6.1.19"
-  },
-  "devDependencies": {
-    "typescript": "^5.8.3",
-    "@types/node": "^20.19.1",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6"
-  }
+	"name": "booklist",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"vercel": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"create:mylint": "bunx --bun biome init && bun mylint",
+		"mylint": "bunx biome format --write",
+		"commit": "git pull && bun run vercel && bun mylint && read -p 'Descriptions Commit: ' message && git add . && echo -n \"$message - \" && node getTime.js | xargs -I {} git commit -m \"$message - {}\" && git push",
+		"clean": "rm -rf node_modules && bun install"
+	},
+	"dependencies": {
+		"@supabase/supabase-js": "^2.50.0",
+		"firebase": "^11.9.1",
+		"next": "15.2.1",
+		"next-seo": "^6.8.0",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"sonner": "^2.0.5",
+		"styled-components": "^6.1.19"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.1.1",
+		"@types/node": "^20.19.1",
+		"@types/react": "^19.1.8",
+		"@types/react-dom": "^19.1.6",
+		"typescript": "^5.8.3"
+	}
 }

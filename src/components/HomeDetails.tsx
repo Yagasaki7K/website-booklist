@@ -428,6 +428,6 @@ const HomeDetails = styled.div`
             }
         }
     }
-`
+`;
 
 export default HomeDetails;
