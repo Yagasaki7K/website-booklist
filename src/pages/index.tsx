@@ -1,52 +1,15 @@
 import HomeDetails from "@/components/HomeDetails";
 import Navigation from "@/components/Navigation";
+import signature from "@/components/signature";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { supabase } from "../../supabase";
-import { toast } from "sonner";
 
 export default function Home() {
 	const router = useRouter();
+	const [data, setData] = useState([]);
 	const [getUrl, setUrl] = useState("");
-
-	async function insertUserInSupabase() {
-		const { data: user } = await supabase.auth.getUser();
-
-		await supabase.from("users").insert({
-			id: user.user?.id,
-			user_name: "Nome Completo",
-			user_email: email,
-			user_books: [],
-		});
-	}
-
-	const handleSignup = async () => {
-		const { error } = await supabase.auth.signUp({ email, password });
-		if (error) return alert(error.message);
-		toast.success("Cadastro feito! Verifique seu e-mail.");
-		insertUserInSupabase();
-		router.push("/");
-	};
-
-	// get the URL
-	useEffect(() => {
-		const fullUrl = window.location.href;
-		const page = fullUrl.split("?page=")[1];
-		setUrl(page);
-	}, [router.asPath]);
-
-	const handleLogin = () => {
-		router.push("/?page=login");
-	};
-
-	const handleSignUp = () => {
-		router.push("/?page=signup");
-	};
-
-	const handleHome = () => {
-		router.push("/");
-	};
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -128,107 +91,46 @@ export default function Home() {
 				</div>
 				<div className="top">
 					<h2>Top 10 Books</h2>
+
 					<div className="books">
-						<h4>#1</h4>
-						<div className="book">
-							<div className="leftContent">
-								<img src="/books/1.png" alt="" width={100} height={100} />
-								<div className="content">
-									<h3>The Great Gatsby - F. Scott Fitzgerald</h3>
-									<p>
-										<span>adventure</span> <span>fantasy</span>{" "}
-										<span>mystery</span>
-									</p>
-								</div>
-							</div>
-							<div className="rightContent">
-								<p>
-									<i className="uil uil-smile"></i> 28971 users
-								</p>
-								<p>
-									<i className="uil uil-book"></i> 2015
-								</p>
-							</div>
-						</div>
+						{signature &&
+							signature.map((item, index) => {
+								return (
+									<>
+										<div className="contain">
+											<h4>#{index + 1}</h4>
+											<div className="book">
+												<div className="leftContent">
+													<img
+														src={item.image}
+														alt={item.title}
+														width={100}
+														height={100}
+													/>
+
+													<div className="content">
+														<Link href={item.link} key={index}>
+															<h3>{item.title}</h3>
+														</Link>
+														<p>
+															{item.categories &&
+																item.categories.map((genre, index) => {
+																	return (
+																		<span key={index}>
+																			{genre.toLowerCase()}
+																		</span>
+																	);
+																})}
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</>
+								);
+							})}
 					</div>
 				</div>
-
-				{getUrl === "login" ? (
-					<div className="modal-login">
-						<div className="modal-content">
-							<img src="/logo-white.png" alt="" />
-							<div className="header">
-								<h2>Fazer Login</h2>
-								<button className="close-modal" onClick={() => handleHome()}>
-									<i className="uil uil-times"></i>
-								</button>
-							</div>
-							<form action="">
-								<input type="email" placeholder="Seu e-mail" />
-								<input type="password" placeholder="Sua senha" />
-								<button type="submit">Entrar</button>
-								<p className="link">Esqueci minha senha</p>
-							</form>
-							<p>
-								Ainda não tem conta?&nbsp;
-								<p className="link" onClick={() => handleSignUp()}>
-									Cadastrar
-								</p>
-							</p>
-						</div>
-					</div>
-				) : null}
-
-				{getUrl === "signup" ? (
-					<div className="modal-signup">
-						<div className="modal-content">
-							<img src="/logo-white.png" alt="" />
-							<div className="header">
-								<h2>Criar um Cadastro</h2>
-								<button className="close-modal" onClick={() => handleHome()}>
-									<i className="uil uil-times"></i>
-								</button>
-							</div>
-
-							<form onSubmit={(e) => e.preventDefault()}>
-								<input
-									type="email"
-									placeholder="Seu Email"
-									onChange={(e) => setEmail(e.target.value)}
-									required
-								/>
-								<input
-									type="password"
-									placeholder="Sua senha"
-									onChange={(e) => setPassword(e.target.value)}
-									required
-								/>
-								<input
-									type="password"
-									placeholder="Repita sua senha"
-									onChange={(e) => setConfirmPassword(e.target.value)}
-									required
-								/>
-								<button
-									type="submit"
-									onClick={
-										confirmPassword === password
-											? () => handleSignup()
-											: () => toast.warning("As senhas devem ser iguais")
-									}
-								>
-									Cadastrar
-								</button>
-							</form>
-							<p>
-								Já tenho uma conta.&nbsp;
-								<p className="link" onClick={() => handleLogin()}>
-									Fazer Login
-								</p>
-							</p>
-						</div>
-					</div>
-				) : null}
 			</HomeDetails>
 		</>
 	);

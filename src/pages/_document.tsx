@@ -73,7 +73,7 @@ export default class MyDocument extends Document {
 
 					<meta name="author" content="Anderson 'Yagasaki' Marlon" />
 					<meta name="robots" content="index, follow" />
-					<link rel="icon" type="image/png" href="/logo.png" />
+					<link rel="icon" type="image/png" href="/discord.png" />
 
 					<meta property="og:locale" content="pt_BR" />
 

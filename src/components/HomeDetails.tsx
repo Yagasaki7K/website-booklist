@@ -143,17 +143,19 @@ const HomeDetails = styled.div`
         }
 
         h4 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             margin-top: 1.5rem;
             margin-right: 1rem;
+            color: var(--gray);
         }
 
         .books {
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             margin-top: 1rem;
             width: 75rem;
 
@@ -174,6 +176,7 @@ const HomeDetails = styled.div`
                 flex-direction: row;
                 align-items: center;
                 justify-content: flex-start;
+                height: 3rem;
                 flex: 1;
 
                 img {
@@ -186,11 +189,14 @@ const HomeDetails = styled.div`
                 .content {
                     display: flex;
                     flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    margin-top: 2.5rem;
 
                     h3 {
                         font-size: 1.2rem;
                         font-weight: 600;
-                        margin: -3.5rem 0 0 0;
+                        margin-top: -2rem;
 
                         &:hover {
                             cursor: pointer;
@@ -207,9 +213,8 @@ const HomeDetails = styled.div`
                         span {
                             background: var(--primary);
                             color: var(--white);
-                            padding: 0.1rem 0.5rem;
+                            padding: 0rem 0.5rem;
                             border-radius: 15px;
-                            margin-top: 0.5rem;
                             margin-right: 0.5rem;
                             font-size: 0.8rem;
                         }
