@@ -6,9 +6,11 @@
 	--navigation: #2b2d42;
 	--footer: #11161d;
 	--primary: #9e35ff;
+	--primary-hover: rgb(105, 34, 176);
 	--white: #fff;
 	--gray: #748899;
 	--black: #171717;
+	--red: #fd3774;
 }
 
 @media (prefers-color-scheme: dark) {

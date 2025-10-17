@@ -100,7 +100,7 @@ const Navigation = () => {
 					<li onClick={() => router.push("/")}>Home</li>
 					<li onClick={() => router.push("/search")}>Search</li>
 					<li onClick={() => router.push("/profile")}>Profile</li>
-					<li onClick={() => router.push("/top")}>Top 100</li>
+					<li onClick={() => router.push("/top")}>Top 10</li>
 					<li onClick={() => router.push("https://discord.gg/hnkScv9p5M")}>
 						Discord
 					</li>

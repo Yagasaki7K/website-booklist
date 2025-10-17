@@ -151,6 +151,27 @@ const HomeDetails = styled.div`
             color: var(--gray);
         }
 
+        input {
+            width: 45rem;
+            height: 3rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            padding: 0 1.5rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--white);
+            background: var(--navigation);
+            font-family: "Overpass", sans-serif;
+        }
+
+        .contain {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
         .books {
             display: flex;
             align-items: center;
@@ -167,7 +188,8 @@ const HomeDetails = styled.div`
                 border-radius: 15px;
                 width: 100%;
                 flex-wrap: wrap;
-                gap: 1rem;
+                margin-top: 1rem;
+                width: 65rem;
             }
 
             .leftContent {
@@ -197,6 +219,11 @@ const HomeDetails = styled.div`
                         font-size: 1.2rem;
                         font-weight: 600;
                         margin-top: -2rem;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
 
                         &:hover {
                             cursor: pointer;

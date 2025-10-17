@@ -3,12 +3,9 @@ import Navigation from "@/components/Navigation";
 import { GoogleBook } from "@/types/GoogleBook";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function Home() {
-	const router = useRouter();
-
+export default function Top() {
 	const [books, setBooks] = useState<GoogleBook[]>([]);
 	const [loading, setLoading] = useState(true);
 
@@ -46,71 +43,11 @@ export default function Home() {
 			<Navigation />
 
 			<HomeDetails>
-				<div className="content">
-					<h1>The next-generation book platform</h1>
-					<p>Track, share, and discover your favorite book with BookList.</p>
-
-					<div className="parent">
-						<div className="div1">
-							<div className="leftContent">
-								<img src="/stats.svg" alt="" width={100} height={100} />
-							</div>
-							<div className="rightContent">
-								<h2>Discover your obsessions</h2>
-								<p>
-									What are your highest rated genres or most readed books?
-									Follow your watching habits over time with in-depth
-									statistics.
-								</p>
-							</div>
-						</div>
-						<div className="div2">
-							<div className="leftContent">
-								<img src="/apps.svg" alt="" width={100} height={100} />
-							</div>
-							<div className="rightContent">
-								<h2>Bring BookList anywhere</h2>
-								<p>
-									Keep track of your progress on-the-go with one of many
-									BookList apps across iOS, Android, macOS, and Windows.
-								</p>
-							</div>
-						</div>
-						<div className="div3">
-							<div className="leftContent">
-								<img src="/social.svg" alt="" width={100} height={100} />
-							</div>
-							<div className="rightContent">
-								<h2>Join the conversation</h2>
-								<p>
-									Share your thoughts with our thriving community, make friends,
-									socialize, and receive recommendations.
-								</p>
-							</div>
-						</div>
-						<div className="div4">
-							<div className="leftContent">
-								<img src="/custom.svg" alt="" width={100} height={100} />
-							</div>
-							<div className="rightContent">
-								<h2>Tweak it to your liking</h2>
-								<p>
-									Customize your scoring system, title format, color scheme, and
-									much more! Also, we have a dark mode.
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<button onClick={() => router.push("/signup")}>
-						Join Now <i className="uil uil-angle-right-b"></i>
-					</button>
-				</div>
 				<div className="top">
 					<h2>Top 10 Books</h2>
 
 					{loading ? (
-						<p>Carregando...</p>
+						<p>Loading ...</p>
 					) : (
 						<div className="books">
 							{books.map((item, index) => {
