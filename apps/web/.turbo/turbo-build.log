@@ -1,0 +1,29 @@
+
+[0m[2m[35m$[0m [2m[1mnext build[0m
+ [33m[1m⚠[22m[39m Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/yagasaki/kali@dev/website-booklist/bun.lock as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/yagasaki/kali@dev/website-booklist/apps/web/bun.lock
+
+   [1m[38;2;173;127;168m▲ Next.js 16.0.6[39m[22m (Turbopack)
+
+[?25l [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m..[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m...[39m[2K[1G [37m[1m [22m[39m Running TypeScript  [36m.[39m[2K[1G[?25h[?25l [37m[1m [22m[39m Finished TypeScript in 2.5s  [36m.[39m[2K[1G[?25h [37m[1m [22m[39m Finished TypeScript in 2.5s     [32m[1m✓[22m[39m Finished TypeScript in 2.5s 
+ [37m[1m [22m[39m Creating an optimized production build ...
+ [32m[1m✓[22m[39m Compiled successfully in 1355.9ms
+[?25l [37m[1m [22m[39m Collecting page data using 11 workers  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting page data using 11 workers  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting page data using 11 workers  [36m...[39m[2K[1G[?25h [37m[1m [22m[39m Collecting page data using 11 workers in 603.2ms     [32m[1m✓[22m[39m Collecting page data using 11 workers in 603.2ms 
+[?25l [37m[1m [22m[39m Generating static pages using 11 workers (0/4)  [36m[    ][39m[2K[1G [37m[1m [22m[39m Generating static pages using 11 workers (0/4)  [36m[=   ][39m[2K[1G [37m[1m [22m[39m Generating static pages using 11 workers (0/4)  [36m[==  ][39m[2K[1G[?25h [32m[1m✓[22m[39m Generating static pages using 11 workers (4/4) in 557.5ms
+[?25l [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G[?25h [37m[1m [22m[39m Finalizing page optimization in 8.8ms     [32m[1m✓[22m[39m Finalizing page optimization in 8.8ms 
+
+[4mRoute (pages)[24m
+┌ ○ /
+├   /_app
+├ ○ /404
+├ ○ /admin
+└ ƒ /api/local-books
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+[?25h

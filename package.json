@@ -1,33 +1,26 @@
 {
-	"name": "booklist",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"dev": "next dev --turbopack",
-		"vercel": "next build",
-		"start": "next start",
-		"lint": "next lint",
-		"create:mylint": "bunx --bun biome init && bun mylint",
-		"mylint": "bunx biome format --write",
-		"next:update": "bun add next@latest react@latest react-dom@latest eslint-config-next@latest",
-		"commit": "git pull && bun update && bun run vercel && bun mylint && read -p 'Descriptions Commit: ' message && git add . && echo -n \"$message - \" && node getTime.js | xargs -I {} git commit -m \"$message - {}\" && git push",
-		"clean": "rm -rf node_modules && bun install"
-	},
-	"dependencies": {
-		"eslint-config-next": "^16.0.0",
-		"firebase": "^11.10.0",
-		"next": "^16.0.0",
-		"next-seo": "^6.8.0",
-		"react": "^19.2.0",
-		"react-dom": "^19.2.0",
-		"sonner": "^2.0.7",
-		"styled-components": "^6.1.19"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^2.2.7",
-		"@types/node": "^20.19.23",
-		"@types/react": "^19.2.2",
-		"@types/react-dom": "^19.2.2",
-		"typescript": "^5.9.3"
-	}
+    "name": "website-booklist",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "packageManager": "bun@1.3.3",
+    "scripts": {
+        "dev": "turbo run dev",
+        "vercel": "turbo run build",
+        "commit": "git pull && bun update && cd apps/web && bun update && cd ../api && bun update && cd ../../ && bun getSecurity.ts && bun run vercel && read -p 'Descriptions Commit: ' message && git add . && echo -n \"$message - \" && node getTime.js | xargs -I {} git commit -m \"$message - {}\" && git push"
+    },
+    "devDependencies": {
+        "@types/bun": "latest",
+        "turbo": "^2.6.3"
+    },
+    "peerDependencies": {
+        "typescript": "^5.9.3"
+    },
+    "dependencies": {
+        "next-seo": "^7.0.1"
+    }
 }

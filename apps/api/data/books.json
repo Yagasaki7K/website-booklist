@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1764613729631",
+    "name": "Camiseta Essential VYBZ",
+    "price": 25.5,
+    "sizes": [
+      "M",
+      " G"
+    ],
+    "category": "Masculina",
+    "type": "Usado",
+    "images": [
+      "loremipsum"
+    ],
+    "description": "Confortável, minmimalista"
+  }
+]

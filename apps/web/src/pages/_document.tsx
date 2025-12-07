@@ -1,0 +1,55 @@
+import { ServerStyleSheet } from "styled-components";
+import Document, { type DocumentContext, type DocumentInitialProps, Head, Html, Main, NextScript } from "next/document";
+
+export default class MyDocument extends Document {
+	// Fast refresh with NextJS doesn't broken the CSS
+	static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+		const sheet = new ServerStyleSheet();
+		const originalRenderPage = ctx.renderPage;
+
+		try {
+			ctx.renderPage = () =>
+				originalRenderPage({
+					enhanceApp: (App: any) => (props: any) => sheet.collectStyles(<App {...props} />),
+				});
+
+			const initialProps = await Document.getInitialProps(ctx);
+			return {
+				...initialProps,
+				styles: (
+					<>
+						{initialProps.styles}
+						{sheet.getStyleElement()}
+					</>
+				),
+			};
+		} finally {
+			sheet.seal();
+		}
+	}
+	// Finish Here
+
+	render() {
+    return (
+        <Html lang="pt-br">
+            <Head>
+                <meta
+                    name="keywords"
+                    content="anderson, marlon, himura, yagasaki, 7k, programador, programação, code, código aberto, github, linkedin, twitter, x, tomaz, alves, desenvolvedor, engide,
+                    git, javascript, typescript, css, html, supabase, firebase, hasura, graphql, elysia, bun, node, whatsapp, api, openai, mysql, sqlite, mongodb, software, engineer, developer"
+                />
+
+                <meta name="author" content="Anderson 'Yagasaki' Marlon" />
+                <meta name="robots" content="index, follow" />
+                <link rel="shortcut icon" href="https://github.com/Yagasaki7K.png" type="image/png" />
+                <meta property="og:locale" content="pt_BR" />
+            </Head>
+
+            <body>
+                <Main />
+                <NextScript />
+            </body>
+        </Html>
+    );
+}
+}

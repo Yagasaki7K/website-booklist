@@ -1,4 +1,4 @@
-# website-vybz
+# shared
 
 To install dependencies:
 
